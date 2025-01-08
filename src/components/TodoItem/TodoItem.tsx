@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface TodoItemProps {
   todo: {
@@ -18,17 +18,17 @@ const TodoItem: React.FC<TodoItemProps> = ({
   return (
     <li
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "10px",
-        textDecoration: todo.completed ? "line-through" : "none",
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '10px',
+        textDecoration: todo.completed ? 'line-through' : 'none',
       }}
     >
       <span
         onClick={() => toggleTodo(todo.id)}
         style={{
-          cursor: "pointer",
+          cursor: 'pointer',
           flex: 1,
         }}
       >
@@ -36,7 +36,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
       </span>
       <button
         onClick={() => deleteTodo(todo.id)}
-        style={{ marginLeft: "10px" }}
+        style={{ marginLeft: '10px' }}
       >
         Delete
       </button>
