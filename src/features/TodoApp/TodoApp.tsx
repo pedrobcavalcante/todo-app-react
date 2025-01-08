@@ -1,72 +1,28 @@
-import React, { useState } from "react";
-import TodoItem from "../../components/TodoItem/TodoItem";
-
-
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import React, { useState } from 'react';
+import Header from '../../components/Header';
+import Input from '../../components/Input';
 
 const TodoApp: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [todos, setTodos] = useState<string[]>([]);
 
-  const addTodo = () => {
-    if (!newTodo.trim()) return;
-
-    const newTask: Todo = {
-      id: Date.now(),
-      text: newTodo,
-      completed: false,
-    };
-
-    setTodos([...todos, newTask]);
-    setNewTodo("");
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    document.body.className = isDarkMode ? 'light' : 'dark';
   };
 
-  const toggleTodo = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const addTodo = (todoText: string) => {
+    setTodos([...todos, todoText]);
   };
 
   return (
-    <div style={{ maxWidth: "500px", margin: "auto", textAlign: "center" }}>
-      <h1>Todo App</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Add a new task..."
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          style={{
-            padding: "10px",
-            width: "80%",
-            marginBottom: "10px",
-          }}
-        />
-        <button onClick={addTodo} style={{ padding: "10px 20px" }}>
-          Add
-        </button>
-      </div>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            toggleTodo={toggleTodo}
-            deleteTodo={deleteTodo}
-          />
-        ))}
-      </ul>
-    </div>
+    <>
+      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <main className="p-4">
+        <Input addTodo={addTodo} />
+        {/* Lista de tarefas será adicionada aqui */}
+      </main>
+    </>
   );
 };
 

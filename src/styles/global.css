@@ -1,0 +1,23 @@
+/* Variáveis de tema */
+:root {
+  --bg-light: linear-gradient(to bottom, #fefefe, #e3e3e3);
+  --bg-dark: linear-gradient(to bottom, #181824, #25273c);
+  --text-light: #000;
+  --text-dark: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  transition: background 0.3s ease;
+}
+
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
