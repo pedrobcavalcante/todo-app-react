@@ -4,13 +4,13 @@
   --bg-dark-image: url('../assets/images/bg-desktop-dark.jpg');
   --bg-dark-color: #181824;
   --text-light-color: #333;
-  --text-dark-color: #FAFAFA;
+  --text-dark-color: #fafafa;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
