@@ -1,21 +1,30 @@
 /* Variáveis de Tema */
 :root {
-  --bg-light-image: url('/src/assets/images/bg-desktop-light.jpg');
+  --bg-light-image: url('../assets/images/bg-desktop-light.jpg');
+  --bg-dark-image: url('../assets/images/bg-desktop-dark.jpg');
+  --bg-dark-color: #25273c;
+  --text-light-color: #333;
+  --text-dark-color: #fff;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 body.light {
   background: var(--bg-light-image) no-repeat center top;
   background-size: 100% 40vh;
   background-color: #fefefe;
+  color: var(--text-light-color);
 }
 
 body.dark {
-  background-color: #25273c;
+  background: var(--bg-dark-image) no-repeat center top;
+  background-color: var(--bg-dark-color);
+  color: var(--text-dark-color);
 }
