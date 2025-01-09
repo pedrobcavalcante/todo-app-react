@@ -1,5 +1,5 @@
 import Header from './components/Header/Header';
-import TodoApp from './features/Todo/TodoApp';
+import TodoApp from './features/TodoApp/TodoApp';
 
 function App() {
   return (
