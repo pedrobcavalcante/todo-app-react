@@ -1,45 +1,29 @@
 import React from 'react';
+import styles from './TodoItem.module.css';
 
 interface TodoItemProps {
-  todo: {
-    id: number;
-    text: string;
-    completed: boolean;
-  };
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  id: number;
+  text: string;
+  completed: boolean;
+  onToggle: (id: number) => void;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({
-  todo,
-  toggleTodo,
-  deleteTodo,
+  id,
+  text,
+  completed,
+  onToggle,
 }) => {
   return (
-    <li
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '10px',
-        textDecoration: todo.completed ? 'line-through' : 'none',
-      }}
-    >
-      <span
-        onClick={() => toggleTodo(todo.id)}
-        style={{
-          cursor: 'pointer',
-          flex: 1,
-        }}
-      >
-        {todo.text}
-      </span>
-      <button
-        onClick={() => deleteTodo(todo.id)}
-        style={{ marginLeft: '10px' }}
-      >
-        Delete
-      </button>
+    <li className={`${styles.task} ${completed ? styles.completed : ''}`}>
+      <label>
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={() => onToggle(id)}
+        />
+        {text}
+      </label>
     </li>
   );
 };

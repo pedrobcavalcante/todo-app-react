@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import Header from '../../components/Header/Header';
+import Input from '../../components/Input/Input';
+import TodoItem from '../../components/TodoItem/TodoItem';
+import Footer from '../../components/Footer/Footer';
 import styles from './TodoPage.module.css';
-import { useTheme } from '../../hooks/useTheme';
-
-import SunIcon from '../../assets/icons/icon-sun.svg';
-import MoonIcon from '../../assets/icons/icon-moon.svg';
 
 const TodoPage: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
   const [tasks, setTasks] = useState([
     { id: 1, text: 'Complete online JavaScript course', completed: true },
     { id: 2, text: 'Jog around the park 3x', completed: false },
@@ -40,75 +39,27 @@ const TodoPage: React.FC = () => {
 
   return (
     <main className={styles.todoPage}>
-      {/* Header com título e botão de alternância de tema */}
-      <header className={styles.header}>
-        <h1 className={styles.title}>TODO</h1>
-        <button className={styles.themeToggleButton} onClick={toggleTheme}>
-          <img
-            src={theme === 'light' ? MoonIcon : SunIcon}
-            alt={theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-            className={styles.themeIcon}
-          />
-        </button>
-      </header>
-
-      {/* Campo de entrada para adicionar novas tarefas */}
+      <Header />
       <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Create a new todo..."
-          className={styles.input}
-        />
+        <Input placeholder="Create a new todo..." />
       </div>
-
-      {/* Lista de tarefas */}
       <ul className={styles.taskList}>
         {filteredTasks.map((task) => (
-          <li
+          <TodoItem
             key={task.id}
-            className={`${styles.task} ${
-              task.completed ? styles.completed : ''
-            }`}
-          >
-            <label>
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
-              {task.text}
-            </label>
-          </li>
+            id={task.id}
+            text={task.text}
+            completed={task.completed}
+            onToggle={toggleTask}
+          />
         ))}
       </ul>
-
-      {/* Footer com contador e filtros */}
-      <footer className={styles.footer}>
-        <span>{remainingTasks} items left</span>
-        <div className={styles.filters}>
-          <button
-            onClick={() => setFilter('all')}
-            className={filter === 'all' ? styles.activeFilter : ''}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setFilter('active')}
-            className={filter === 'active' ? styles.activeFilter : ''}
-          >
-            Active
-          </button>
-          <button
-            onClick={() => setFilter('completed')}
-            className={filter === 'completed' ? styles.activeFilter : ''}
-          >
-            Completed
-          </button>
-        </div>
-        <button onClick={clearCompleted} className={styles.clearCompleted}>
-          Clear Completed
-        </button>
-      </footer>
+      <Footer
+        remainingTasks={remainingTasks}
+        filter={filter}
+        setFilter={setFilter}
+        clearCompleted={clearCompleted}
+      />
     </main>
   );
 };

@@ -1,5 +1,28 @@
 .header {
-  padding: 10px;
-  text-align: center;
-  background-color: var(--bg-light-image);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  color: white;
+  margin: 0;
+}
+
+.themeToggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.themeToggleButton:hover {
+  transform: scale(1.1);
+}
+
+.themeIcon {
+  width: 24px;
+  height: 24px;
 }
