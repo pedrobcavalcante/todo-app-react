@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styles from './TodoPage.module.css';
 import { useTheme } from '../../hooks/useTheme';
 
+import SunIcon from '../../assets/icons/icon-sun.svg';
+import MoonIcon from '../../assets/icons/icon-moon.svg';
+
 const TodoPage: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [tasks, setTasks] = useState([
@@ -41,7 +44,11 @@ const TodoPage: React.FC = () => {
       <header className={styles.header}>
         <h1 className={styles.title}>TODO</h1>
         <button className={styles.themeToggleButton} onClick={toggleTheme}>
-          {theme === 'light' ? '🌞' : '🌙'}
+          <img
+            src={theme === 'light' ? MoonIcon : SunIcon}
+            alt={theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            className={styles.themeIcon}
+          />
         </button>
       </header>
 
