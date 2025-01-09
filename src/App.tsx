@@ -1,12 +1,15 @@
-import Header from './components/Header/Header';
-import TodoApp from './features/TodoApp/TodoApp';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import TodoPage from './pages/TodoPage/TodoPage';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <TodoApp />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Routes>
+          <Route path="/" element={<TodoPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
