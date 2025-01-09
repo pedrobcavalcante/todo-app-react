@@ -1,13 +1,11 @@
-import Header from './components/Header'; // Importa o header
+import Header from './components/Header/Header';
+import TodoApp from './features/Todo/TodoApp';
 
 function App() {
   return (
     <div>
       <Header />
-      <main style={{ padding: '20px' }}>
-        {/* Aqui ficará o resto do conteúdo */}
-        <p>Welcome to the Todo App!</p>
-      </main>
+      <TodoApp />
     </div>
   );
 }
