@@ -22,6 +22,13 @@ const TodoPage: React.FC = () => {
     if (filter === 'completed') return task.completed;
     return true;
   });
+  const handleEditTask = (id: number, newText: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, text: newText } : task
+      )
+    );
+  };
 
   const toggleTask = (id: number) => {
     setTasks((prevTasks) =>
@@ -51,6 +58,7 @@ const TodoPage: React.FC = () => {
             text={task.text}
             completed={task.completed}
             onToggle={toggleTask}
+            onEdit={handleEditTask}
           />
         ))}
       </ul>
