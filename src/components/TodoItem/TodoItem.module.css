@@ -5,18 +5,37 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
+  gap: 15px; /* Espaço entre o botão e o texto */
 }
 
-.task.completed label {
-  text-decoration: line-through;
-  color: #aaa;
+.text {
+  flex-grow: 1;
+  color: white;
 }
 
-.editInput {
-  margin-left: 10px;
-  padding: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
+.checkButton {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkButton:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.checkButton.checked {
+  background: linear-gradient(135deg, #55ddff, #c058f3);
+  border: none;
+}
+
+.checkButton.checked img {
+  width: 14px;
+  height: 14px;
 }

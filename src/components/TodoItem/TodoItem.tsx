@@ -19,7 +19,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
 
-  const handleDoubleClick = () => {
+  const handleTextClick = () => {
     setIsEditing(true);
   };
 
@@ -41,26 +41,30 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   return (
     <li className={`${styles.task} ${completed ? styles.completed : ''}`}>
-      <label>
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={() => onToggle(id)}
-        />
-        {isEditing ? (
-          <input
-            type="text"
-            value={editedText}
-            onChange={(e) => setEditedText(e.target.value)}
-            onBlur={handleBlur}
-            onKeyPress={handleKeyPress}
-            autoFocus
-            className={styles.editInput}
-          />
-        ) : (
-          <span onDoubleClick={handleDoubleClick}>{text}</span>
+      <button
+        className={`${styles.checkButton} ${completed ? styles.checked : ''}`}
+        onClick={() => onToggle(id)}
+        aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
+      >
+        {completed && (
+          <img src="/src/assets/icons/icon-check.svg" alt="Checked" />
         )}
-      </label>
+      </button>
+      {isEditing ? (
+        <input
+          type="text"
+          value={editedText}
+          onChange={(e) => setEditedText(e.target.value)}
+          onBlur={handleBlur}
+          onKeyPress={handleKeyPress}
+          autoFocus
+          className={styles.editInput}
+        />
+      ) : (
+        <span onClick={handleTextClick} className={styles.text}>
+          {text}
+        </span>
+      )}
     </li>
   );
 };
