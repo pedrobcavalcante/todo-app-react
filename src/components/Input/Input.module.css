@@ -7,7 +7,7 @@
   background: #25273c;
   color: #cdcfe7;
   font-size: 1rem;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.5);
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease;
