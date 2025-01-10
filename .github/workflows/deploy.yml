@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     tags:
-      - 'v*' # O workflow será executado para qualquer tag que comece com "v"
+      - '*' # O workflow será executado para qualquer tag
 
 jobs:
   build-and-deploy:
@@ -19,6 +19,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      # Configurar base URL do Vite para GitHub Pages
+      - name: Set base URL for GitHub Pages
+        run: echo "VITE_BASE=/todo-app-react/" >> .env
 
       # Instalar dependências do projeto
       - name: Install dependencies
