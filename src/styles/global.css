@@ -1,4 +1,3 @@
-/* Variáveis de Tema */
 :root {
   --bg-light-image: url('../assets/images/bg-desktop-light.jpg');
   --bg-dark-image: url('../assets/images/bg-desktop-dark.jpg');
@@ -26,8 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: inherit; /* Herdar a fonte global */
-
+  font-family: inherit;
 }
 body.light {
   background: var(--bg-light-image) no-repeat center top;

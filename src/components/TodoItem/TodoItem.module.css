@@ -1,6 +1,6 @@
 .task {
   width: 100%;
-  max-width: 600px; /* Igual ao input */
+  max-width: 600px;
   padding: 15px 20px;
   background: #25273c;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -18,11 +18,11 @@
 
 .task.completed .text {
   text-decoration: line-through;
-  color: #45475d; /* Cor do texto para tarefas completadas */
+  color: #45475d;
 }
 
 .checkButton {
-  width: 18px; /* Ajuste para tamanho proporcional */
+  width: 18px;
   height: 18px;
   border: 2px solid #777a92;
   border-radius: 50%;
@@ -48,7 +48,7 @@
 }
 
 .text {
-  color: #CDCFE7;
+  color: #cdcfe7;
   transition: color 0.3s ease;
 }
 
@@ -62,7 +62,7 @@
   border: none;
   border-radius: 5px;
   background: #1f202d;
-  color: #CDCFE7;
+  color: #cdcfe7;
   font-size: 1rem;
   outline: none;
   box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
