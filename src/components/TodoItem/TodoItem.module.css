@@ -1,4 +1,6 @@
 .task {
+  width: 100%;
+  max-width: 600px; /* Igual ao input */
   padding: 15px 20px;
   background: #25273c;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);

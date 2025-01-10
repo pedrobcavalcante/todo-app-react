@@ -34,7 +34,9 @@
 }
 
 .inputContainer {
-  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
 }
 
 .input {
@@ -50,8 +52,9 @@
 .taskList {
   list-style: none;
   padding: 0;
-  margin: 0;
-  border: none;
+  margin: 0 auto; /* Centralizar */
+  width: 100%;
+  max-width: 600px; /* Igual ao input */
 }
 
 .task {
