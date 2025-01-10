@@ -5,9 +5,21 @@ interface InputProps {
   placeholder: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
+  onEnter?: () => void;
 }
 
-const Input: React.FC<InputProps> = ({ placeholder, onChange, value }) => {
+const Input: React.FC<InputProps> = ({
+  placeholder,
+  onChange,
+  value,
+  onEnter,
+}) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && onEnter) {
+      onEnter();
+    }
+  };
+
   return (
     <input
       type="text"
@@ -15,6 +27,7 @@ const Input: React.FC<InputProps> = ({ placeholder, onChange, value }) => {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      onKeyPress={handleKeyPress}
     />
   );
 };

@@ -15,6 +15,7 @@ const TodoPage: React.FC = () => {
     { id: 6, text: 'Complete Todo App on Frontend Mentor', completed: false },
   ]);
 
+  const [newTaskText, setNewTaskText] = useState(''); // Estado para o texto do input
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
 
   const filteredTasks = tasks.filter((task) => {
@@ -22,6 +23,20 @@ const TodoPage: React.FC = () => {
     if (filter === 'completed') return task.completed;
     return true;
   });
+
+  const handleAddTask = () => {
+    if (newTaskText.trim() === '') return; // Impedir tarefas vazias
+
+    const newTask = {
+      id: tasks.length + 1,
+      text: newTaskText.trim(),
+      completed: false,
+    };
+
+    setTasks((prevTasks) => [...prevTasks, newTask]); // Adicionar nova tarefa
+    setNewTaskText(''); // Limpar o campo de entrada
+  };
+
   const handleEditTask = (id: number, newText: string) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -48,7 +63,12 @@ const TodoPage: React.FC = () => {
     <main className={styles.todoPage}>
       <Header />
       <div className={styles.inputContainer}>
-        <Input placeholder="Create a new todo..." />
+        <Input
+          placeholder="Create a new todo..."
+          value={newTaskText}
+          onChange={(e) => setNewTaskText(e.target.value)} // Atualizar o estado do texto
+          onEnter={handleAddTask} // Adicionar tarefa ao pressionar Enter
+        />
       </div>
       <ul className={styles.taskList}>
         {filteredTasks.map((task) => (
