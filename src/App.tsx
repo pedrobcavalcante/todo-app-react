@@ -1,16 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import TodoPage from './pages/TodoPage/TodoPage';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <Routes>
-          <Route path="/" element={<TodoPage />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<TodoPage />} />
+    </Routes>
   );
-}
+};
 
 export default App;

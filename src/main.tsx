@@ -1,15 +1,14 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles/global.css';
-
-import App from './App.tsx';
-
-const savedTheme = localStorage.getItem('theme') || 'light';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "./styles/global.css";
+const savedTheme = localStorage.getItem('theme') || 'dark';
 document.body.className = savedTheme;
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <BrowserRouter basename="/todo-app-react">
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );
