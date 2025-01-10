@@ -14,11 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Instalar Node.js (versão recomendada para o seu projeto)
+      # Instalar Node.js (versão compatível)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       # Configurar base URL do Vite para GitHub Pages
       - name: Set base URL for GitHub Pages
