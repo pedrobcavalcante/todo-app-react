@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    tags:
+      - 'v*' # O workflow será executado para qualquer tag que comece com "v"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Instalar Node.js (versão recomendada para o seu projeto)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # Instalar dependências do projeto
+      - name: Install dependencies
+        run: npm install
+
+      # Fazer o build do projeto
+      - name: Build project
+        run: npm run build
+
+      # Deploy para o GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Altere o caminho se o seu build for para outra pasta
