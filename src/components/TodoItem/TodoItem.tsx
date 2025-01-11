@@ -47,7 +47,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
       >
         {completed && (
-          <img src="/src/assets/icons/icon-check.svg" alt="Checked" />
+          <img src="src/assets/icons/icon-check.svg" alt="Checked" />
         )}
       </button>
       {isEditing ? (
