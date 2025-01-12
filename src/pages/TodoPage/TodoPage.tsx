@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ListHeader from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import TodoItem from '../../components/TodoItem/TodoItem';
-import Footer from '../../components/Footer/Footer';
+import ListFooter from '../../components/Footer/Footer';
 import styles from './TodoPage.module.css';
 
 const TodoPage: React.FC = () => {
@@ -82,7 +82,7 @@ const TodoPage: React.FC = () => {
           />
         ))}
       </ul>
-      <Footer
+      <ListFooter
         remainingTasks={remainingTasks}
         filter={filter}
         setFilter={setFilter}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Footer.module.css';
+import styles from './ListFooter.module.css';
 
 interface FooterProps {
   remainingTasks: number;
@@ -8,7 +8,7 @@ interface FooterProps {
   clearCompleted: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({
+const ListFooter: React.FC<FooterProps> = ({
   remainingTasks,
   filter,
   setFilter,
@@ -44,4 +44,4 @@ const Footer: React.FC<FooterProps> = ({
   );
 };
 
-export default Footer;
+export default ListFooter;
