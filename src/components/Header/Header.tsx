@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 
-const Header: React.FC = () => {
+const ListHeader: React.FC = () => {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>TODO</h1>
@@ -16,4 +16,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default ListHeader;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../components/Header/Header';
+import ListHeader from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import TodoItem from '../../components/TodoItem/TodoItem';
 import Footer from '../../components/Footer/Footer';
@@ -61,7 +61,7 @@ const TodoPage: React.FC = () => {
 
   return (
     <main className={styles.todoPage}>
-      <Header />
+      <ListHeader />
       <div className={styles.inputContainer}>
         <Input
           placeholder="Create a new todo..."
