@@ -4,16 +4,10 @@ import Input from '../../components/Input/Input';
 import ListFooter from '../../components/Footer/Footer';
 import styles from './TodoPage.module.scss';
 import TodoList from '../../components/TodoList/TodoList';
+import { Task } from '../../core/models/task';
 
 const TodoPage: React.FC = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: 'Complete online JavaScript course', completed: true },
-    { id: 2, text: 'Jog around the park 3x', completed: false },
-    { id: 3, text: '10 minutes meditation', completed: false },
-    { id: 4, text: 'Read for 1 hour', completed: false },
-    { id: 5, text: 'Pick up groceries', completed: false },
-    { id: 6, text: 'Complete Todo App on Frontend Mentor', completed: false },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const [newTaskText, setNewTaskText] = useState('');
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
