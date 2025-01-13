@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ListFooter.module.css';
+import styles from './ListFooter.module.scss';
 
 interface FooterProps {
   remainingTasks: number;

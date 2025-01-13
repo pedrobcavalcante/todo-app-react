@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ListHeader.module.css';
+import styles from './ListHeader.module.scss';
 
 const ListHeader: React.FC = () => {
   return (

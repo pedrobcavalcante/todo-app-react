@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './TodoItem.module.css';
+import styles from './TodoItem.module.scss';
 
 interface TodoItemProps {
   id: number;

@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoItem from '../TodoItem/TodoItem';
-import styles from './TodoList.module.css';
+import styles from './TodoList.module.scss';
 
 interface TodoListProps {
   tasks: { id: number; text: string; completed: boolean }[];

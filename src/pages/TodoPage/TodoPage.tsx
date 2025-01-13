@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ListHeader from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import ListFooter from '../../components/Footer/Footer';
-import styles from './TodoPage.module.css';
+import styles from './TodoPage.module.scss';
 import TodoList from '../../components/TodoList/TodoList';
 
 const TodoPage: React.FC = () => {
