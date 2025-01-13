@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ListHeader from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
-import TodoItem from '../../components/TodoItem/TodoItem';
 import ListFooter from '../../components/Footer/Footer';
 import styles from './TodoPage.module.css';
+import TodoList from '../../components/TodoList/TodoList';
 
 const TodoPage: React.FC = () => {
   const [tasks, setTasks] = useState([
@@ -70,18 +70,11 @@ const TodoPage: React.FC = () => {
           onEnter={handleAddTask}
         />
       </div>
-      <ul className={styles.taskList}>
-        {filteredTasks.map((task) => (
-          <TodoItem
-            key={task.id}
-            id={task.id}
-            text={task.text}
-            completed={task.completed}
-            onToggle={toggleTask}
-            onEdit={handleEditTask}
-          />
-        ))}
-      </ul>
+      <TodoList
+        tasks={filteredTasks}
+        onToggle={toggleTask}
+        onEdit={handleEditTask}
+      />
       <ListFooter
         remainingTasks={remainingTasks}
         filter={filter}
