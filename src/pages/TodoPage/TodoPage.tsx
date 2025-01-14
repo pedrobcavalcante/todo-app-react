@@ -4,54 +4,20 @@ import Input from '../../components/Input/Input';
 import ListFooter from '../../components/Footer/Footer';
 import styles from './TodoPage.module.scss';
 import TodoList from '../../components/TodoList/TodoList';
-import { Task } from '../../core/models/task';
+import { useTodo } from '../../hooks/useTodo';
 
 const TodoPage: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const {
+    tasks,
+    addTask,
+    editTask,
+    toggleTask,
+    clearCompleted,
+    setFilter,
+    remainingTasks,
+  } = useTodo();
 
   const [newTaskText, setNewTaskText] = useState('');
-  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
-
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === 'active') return !task.completed;
-    if (filter === 'completed') return task.completed;
-    return true;
-  });
-
-  const handleAddTask = () => {
-    if (newTaskText.trim() === '') return;
-
-    const newTask = {
-      id: tasks.length + 1,
-      text: newTaskText.trim(),
-      completed: false,
-    };
-
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-    setNewTaskText('');
-  };
-
-  const handleEditTask = (id: number, newText: string) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, text: newText } : task
-      )
-    );
-  };
-
-  const toggleTask = (id: number) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
-
-  const clearCompleted = () => {
-    setTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
-  };
-
-  const remainingTasks = tasks.filter((task) => !task.completed).length;
 
   return (
     <main className={styles.todoPage}>
@@ -61,19 +27,18 @@ const TodoPage: React.FC = () => {
           placeholder="Create a new todo..."
           value={newTaskText}
           onChange={(e) => setNewTaskText(e.target.value)}
-          onEnter={handleAddTask}
+          onEnter={() => {
+            addTask(newTaskText);
+            setNewTaskText('');
+          }}
         />
       </div>
-      <TodoList
-        tasks={filteredTasks}
-        onToggle={toggleTask}
-        onEdit={handleEditTask}
-      />
+      <TodoList tasks={tasks} onToggle={toggleTask} onEdit={editTask} />
       <ListFooter
         remainingTasks={remainingTasks}
-        filter={filter}
         setFilter={setFilter}
         clearCompleted={clearCompleted}
+        filter={'all'}
       />
     </main>
   );
