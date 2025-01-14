@@ -1,7 +1,9 @@
 .input {
   width: 100%;
+  box-sizing: border-box;
   max-width: 600px;
-  padding: 15px 20px;
+  height: 46px;
+  padding: 10px;
   border: 1px solid #25273c;
   border-radius: 8px;
   background: #25273c;
@@ -15,10 +17,11 @@
 
 .input:focus {
   outline: none;
-  border-color: rgba(85, 221, 255, 0.8);
+  border-color: none;
   background: rgba(37, 39, 60, 0.9);
 }
 
 .input::placeholder {
+  outline: none;
   color: rgba(255, 255, 255, 0.6);
 }
