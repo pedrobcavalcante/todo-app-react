@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import ListHeader from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import ListFooter from '../../components/Footer/Footer';
-import styles from './TodoPage.module.scss';
+
+import styles from './Todo.module.scss';
 import TodoList from '../../components/TodoList/TodoList';
 import { useTodo } from '../../hooks/useTodo';
 
-const TodoPage: React.FC = () => {
+const Todo: React.FC = () => {
   const {
     tasks,
     addTask,
@@ -44,4 +45,4 @@ const TodoPage: React.FC = () => {
   );
 };
 
-export default TodoPage;
+export default Todo;

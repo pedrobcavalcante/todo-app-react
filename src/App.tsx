@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import TodoPage from './pages/TodoPage/TodoPage';
+import TodoPage from './pages/TodoPage';
 
 const App: React.FC = () => {
   return (
