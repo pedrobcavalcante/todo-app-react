@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './TodoItem.module.scss';
-
 interface TodoItemProps {
   id: number;
   text: string;
@@ -47,7 +46,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
       >
         {completed && (
-          <img src="src/assets/icons/icon-check.svg" alt="Checked" />
+          <img src="/icons/icon-check.svg" alt="Checked" />
         )}
       </button>
       {isEditing ? (
