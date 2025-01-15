@@ -1,13 +1,21 @@
-.header {
+$primary-color: white;
+$transition-duration: 0.2s;
+$hover-scale: 1.1;
+
+@mixin flex-center($justify: center, $align: center) {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.header {
+  @include flex-center(space-between, center);
   margin-bottom: 20px;
 }
 
 .title {
   font-size: 2rem;
-  color: white;
+  color: $primary-color;
   margin: 0;
 }
 
@@ -15,11 +23,11 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s;
-}
+  transition: transform $transition-duration;
 
-.themeToggleButton:hover {
-  transform: scale(1.1);
+  &:hover {
+    transform: scale($hover-scale);
+  }
 }
 
 .themeIcon {

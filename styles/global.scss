@@ -2,17 +2,21 @@
   --bg-light-image: url('/images/bg-desktop-light.jpg');
   --bg-dark-image: url('/images/bg-desktop-dark.jpg');
   --bg-dark-color: #181824;
+  --bg-light-color: #fefefe;
   --text-light-color: #333;
   --text-dark-color: #fafafa;
+
+  --font-family: 'Josefin Sans', sans-serif;
+  --transition-speed: 0.3s;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-family);
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
 }
 
 p,
@@ -32,7 +36,7 @@ h6 {
 body.light {
   background: var(--bg-light-image) no-repeat center top;
   background-size: 100% 40vh;
-  background-color: #fefefe;
+  background-color: var(--bg-light-color);
   color: var(--text-light-color);
 }
 

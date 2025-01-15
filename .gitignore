@@ -24,3 +24,5 @@ dist-ssr
 .next/*
 src*.zip
 out/*
+search_files.py
+output_files.txt
