@@ -49,5 +49,6 @@ export const useTodo = () => {
     clearCompleted,
     setFilter,
     remainingTasks,
+    filter,
   };
 };

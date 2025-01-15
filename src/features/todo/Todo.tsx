@@ -16,6 +16,7 @@ const Todo: React.FC = () => {
     clearCompleted,
     setFilter,
     remainingTasks,
+    filter,
   } = useTodo();
 
   const [newTaskText, setNewTaskText] = useState('');
@@ -39,7 +40,7 @@ const Todo: React.FC = () => {
         remainingTasks={remainingTasks}
         setFilter={setFilter}
         clearCompleted={clearCompleted}
-        filter={'all'}
+        filter={filter}
       />
     </main>
   );
