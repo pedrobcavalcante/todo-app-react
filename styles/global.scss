@@ -14,6 +14,7 @@ body {
     background-color 0.3s ease,
     color 0.3s ease;
 }
+
 p,
 span,
 label,
@@ -27,6 +28,7 @@ h5,
 h6 {
   font-family: inherit;
 }
+
 body.light {
   background: var(--bg-light-image) no-repeat center top;
   background-size: 100% 40vh;

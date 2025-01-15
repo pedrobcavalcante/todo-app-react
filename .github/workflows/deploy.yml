@@ -4,12 +4,14 @@ on:
   push:
     tags:
       - '*' # Executa para qualquer tag
+    branches:
+      - feature/ajuste-da-pipeline # Executa quando a branch feature/ajuste-da-pipeline for atualizada
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    permissions: # Adicione essas permissões
+    permissions:
       contents: write
 
     steps:
@@ -22,6 +24,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      # Configurar variável de ambiente para o caminho base
+      - name: Set BASE_PATH for GitHub Pages
+        run: echo "NEXT_PUBLIC_BASE_PATH=/todo-app-react" >> .env
 
       # Instalar dependências
       - name: Install dependencies
@@ -37,4 +43,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./dist
+          publish_dir: ./out
