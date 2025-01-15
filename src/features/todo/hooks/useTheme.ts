@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   getLocalStorage,
   setLocalStorage,
-} from '../data/datasource/localStorage';
+} from '../../../data/datasource/localStorage';
 
 export const useTheme = () => {
   const [theme, setTheme] = useState<string>('light');

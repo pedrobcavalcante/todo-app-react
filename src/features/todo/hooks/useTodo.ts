@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Task } from '../core/models/task';
+import { Task } from '../../../core/models/task';
 
 export const useTodo = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

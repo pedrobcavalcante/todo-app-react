@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ListHeader from '../../components/Header/Header';
-import Input from '../../components/Input/Input';
-import ListFooter from '../../components/Footer/Footer';
+import ListHeader from './components/Header/Header';
+import Input from './components/Input/Input';
+import ListFooter from './components/Footer/Footer';
 
 import styles from './Todo.module.scss';
-import TodoList from '../../components/TodoList/TodoList';
-import { useTodo } from '../../hooks/useTodo';
+import TodoList from './components/TodoList/TodoList';
+import { useTodo } from './hooks/useTodo';
 
 const Todo: React.FC = () => {
   const {
