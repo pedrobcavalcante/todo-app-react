@@ -1,27 +1,46 @@
+$input-width: 100%;
+$input-max-width: 600px;
+$input-height: 46px;
+$input-padding: 10px;
+$input-border-color: #25273c;
+$input-border-radius: 8px;
+$input-background: #25273c;
+$input-color: #cdcfe7;
+$input-font-size: 1rem;
+$input-box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.5);
+$input-transition: 0.3s ease;
+$input-focus-background: rgba(37, 39, 60, 0.9);
+$input-placeholder-color: rgba(255, 255, 255, 0.6);
+
+@mixin transition($properties...) {
+  transition: $properties;
+}
+
 .input {
-  width: 100%;
+  width: $input-width;
   box-sizing: border-box;
-  max-width: 600px;
-  height: 46px;
-  padding: 10px;
-  border: 1px solid #25273c;
-  border-radius: 8px;
-  background: #25273c;
-  color: #cdcfe7;
-  font-size: 1rem;
-  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.5);
-  transition:
-    border-color 0.3s ease,
-    background-color 0.3s ease;
+  max-width: $input-max-width;
+  height: $input-height;
+  padding: $input-padding;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  background: $input-background;
+  color: $input-color;
+  font-size: $input-font-size;
+  box-shadow: $input-box-shadow;
+  @include transition(
+    border-color $input-transition,
+    background-color $input-transition
+  );
 }
 
 .input:focus {
   outline: none;
-  border-color: none;
-  background: rgba(37, 39, 60, 0.9);
+  border-color: transparent;
+  background: $input-focus-background;
 }
 
 .input::placeholder {
   outline: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: $input-placeholder-color;
 }

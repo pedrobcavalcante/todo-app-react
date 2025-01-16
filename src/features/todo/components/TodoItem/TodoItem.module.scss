@@ -1,32 +1,49 @@
+$primary-bg: #25273c;
+$hover-bg: #1f202d;
+$completed-text: #45475d;
+$border-color: rgba(255, 255, 255, 0.1);
+$check-border: #777a92;
+$text-color: #cdcfe7;
+$hover-text-color: #eaeaea;
+$gradient-start: #55ddff;
+$gradient-end: #c058f3;
+$box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+$focus-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
+
 .task {
   width: 100%;
   box-sizing: border-box;
   max-width: 600px;
   height: 46px;
   padding: 10px;
-  background: #25273c;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: $primary-bg;
+  border-bottom: 1px solid $border-color;
   display: flex;
   align-items: center;
   gap: 15px;
   transition:
     background 0.3s ease,
     color 0.3s ease;
-}
 
-.task:hover {
-  background: #1f202d;
-}
+  &:hover {
+    background: $hover-bg;
+  }
 
-.task.completed .text {
-  text-decoration: line-through;
-  color: #45475d;
+  &.completed .text {
+    text-decoration: line-through;
+    color: $completed-text;
+  }
+
+  &:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 }
 
 .checkButton {
   width: 16px;
   height: 16px;
-  border: 2px solid #777a92;
+  border: 2px solid $check-border;
   border-radius: 50%;
   background: transparent;
   display: flex;
@@ -36,26 +53,26 @@
   transition:
     background 0.3s ease,
     border-color 0.3s ease;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
+  box-shadow: $box-shadow;
 
-.checkButton.checked {
-  background: linear-gradient(135deg, #55ddff, #c058f3);
-  border: None;
-}
+  &.checked {
+    background: linear-gradient(135deg, $gradient-start, $gradient-end);
+    border: none;
+  }
 
-.checkButton img {
-  width: 14px;
-  height: 14px;
+  img {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 .text {
-  color: #cdcfe7;
+  color: $text-color;
   transition: color 0.3s ease;
-}
 
-.text:hover {
-  color: #eaeaea;
+  &:hover {
+    color: $hover-text-color;
+  }
 }
 
 .editInput {
@@ -63,18 +80,14 @@
   padding: 8px;
   border: none;
   border-radius: 5px;
-  background: #1f202d;
-  color: #cdcfe7;
+  background: $hover-bg;
+  color: $text-color;
   font-size: 1rem;
   outline: none;
-  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: $focus-shadow;
   transition: box-shadow 0.3s ease;
-}
 
-.editInput:focus {
-  box-shadow: none;
-}
-.task:first-child {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  &:focus {
+    box-shadow: none;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ListHeader from './components/Header/Header';
+import ListHeader from './components/Header/ListHeader';
 import Input from './components/Input/Input';
 import ListFooter from './components/Footer/Footer';
 
@@ -17,13 +17,17 @@ const Todo: React.FC = () => {
     setFilter,
     remainingTasks,
     filter,
+    searchTasks,
+    clearSearch,
   } = useTodo();
 
   const [newTaskText, setNewTaskText] = useState('');
-
+  const handleSearch = (query: string) => {
+    searchTasks(query);
+  };
   return (
     <main className={styles.todoPage}>
-      <ListHeader />
+      <ListHeader onSearch={handleSearch} onClearSearch={clearSearch} />
       <div className={styles.inputContainer}>
         <Input
           placeholder="Create a new todo..."

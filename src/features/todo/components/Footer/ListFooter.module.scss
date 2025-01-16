@@ -1,3 +1,8 @@
+$font-size: 0.875rem;
+$color-inherit: inherit;
+$transition-color: color 0.3s ease;
+$background-none: none;
+
 .footer {
   width: 100%;
   max-width: 600px;
@@ -6,55 +11,54 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  font-size: 0.875rem;
+  font-size: $font-size;
   background: #25273c;
   border-radius: 0 0 5px 5px;
   color: #cdcfe7;
-}
 
-.footer span {
-  font-size: 0.875rem;
-  color: #cdcfe7;
-}
+  span {
+    font-size: $font-size;
+    color: $color-inherit;
+  }
 
-.filters {
-  display: flex;
-  gap: 15px;
-}
+  .filters {
+    display: flex;
+    gap: 15px;
 
-.filters button {
-  border: none;
-  background: none;
-  color: #cdcfe7;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
-  outline: none;
-}
+    button {
+      border: $background-none;
+      background: $background-none;
+      color: $color-inherit;
+      cursor: pointer;
+      font-size: inherit;
+      transition: $transition-color;
 
-.filters button:hover {
-  color: #eaeaea;
-}
+      &:hover {
+        color: #eaeaea;
+      }
 
-.filters .activeFilter {
-  font-weight: bold;
-  color: white;
-  border-bottom: 2px solid white;
-}
+      &.activeFilter {
+        font-weight: bold;
+        color: white;
+        border-bottom: 2px solid white;
+      }
 
-.filters button:focus {
-  outline: none;
-}
+      &:focus {
+        outline: $background-none;
+      }
+    }
+  }
 
-.clearCompleted {
-  background: none;
-  border: none;
-  color: #ff6b6b;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: color 0.3s ease;
-}
+  .clearCompleted {
+    background: $background-none;
+    border: $background-none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: inherit;
+    transition: $transition-color;
 
-.clearCompleted:hover {
-  color: #ff4a4a;
+    &:hover {
+      color: #ff4a4a;
+    }
+  }
 }

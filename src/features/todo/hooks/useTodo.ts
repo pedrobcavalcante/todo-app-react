@@ -4,8 +4,12 @@ import { Task } from '../../../core/models/task';
 export const useTodo = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTasks = tasks.filter((task) => {
+    if (searchQuery) {
+      return task.text.toLowerCase().includes(searchQuery.toLowerCase());
+    }
     if (filter === 'active') return !task.completed;
     if (filter === 'completed') return task.completed;
     return true;
@@ -41,6 +45,13 @@ export const useTodo = () => {
 
   const remainingTasks = tasks.filter((task) => !task.completed).length;
 
+  const searchTasks = (query: string) => {
+    setSearchQuery(query);
+  };
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
+
   return {
     tasks: filteredTasks,
     addTask,
@@ -50,5 +61,7 @@ export const useTodo = () => {
     setFilter,
     remainingTasks,
     filter,
+    searchTasks,
+    clearSearch,
   };
 };
