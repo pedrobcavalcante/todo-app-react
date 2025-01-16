@@ -17,13 +17,16 @@ const Todo: React.FC = () => {
     setFilter,
     remainingTasks,
     filter,
+    searchTasks,
   } = useTodo();
 
   const [newTaskText, setNewTaskText] = useState('');
-
+  const handleSearch = (query: string) => {
+    searchTasks(query);
+  };
   return (
     <main className={styles.todoPage}>
-      <ListHeader />
+      <ListHeader onSearch={handleSearch} />
       <div className={styles.inputContainer}>
         <Input
           placeholder="Create a new todo..."
