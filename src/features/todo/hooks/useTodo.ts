@@ -48,6 +48,9 @@ export const useTodo = () => {
   const searchTasks = (query: string) => {
     setSearchQuery(query);
   };
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
 
   return {
     tasks: filteredTasks,
@@ -59,5 +62,6 @@ export const useTodo = () => {
     remainingTasks,
     filter,
     searchTasks,
+    clearSearch,
   };
 };

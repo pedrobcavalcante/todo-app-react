@@ -1,81 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './ListHeader.module.scss';
 
 interface ListHeaderProps {
   onSearch: (query: string) => void;
+  onClearSearch: () => void;
 }
 
-const ListHeader: React.FC<ListHeaderProps> = ({ onSearch }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+const ListHeader: React.FC<ListHeaderProps> = ({ onSearch, onClearSearch }) => {
   const [searchText, setSearchText] = useState('');
-  const searchContainerRef = useRef<HTMLDivElement>(null);
-
-  const toggleSearch = () => {
-    setIsSearchOpen((prev) => !prev);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      searchContainerRef.current &&
-      !searchContainerRef.current.contains(event.target as Node)
-    ) {
-      setIsSearchOpen(false);
-      setSearchText('');
-    }
-  };
-
-  useEffect(() => {
-    if (isSearchOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isSearchOpen]);
 
   const handleSearch = () => {
-    if (searchText.trim() !== '') {
+    if (searchText.trim()) {
       onSearch(searchText.trim());
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
+  const handleClearSearch = () => {
+    setSearchText('');
+    onClearSearch();
   };
 
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>TODO</h1>
-      <div className={styles.searchContainer} ref={searchContainerRef}>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Search tasks..."
+          value={searchText}
+          className={styles.searchInput}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
         <button
-          className={`${styles.searchButton} ${
-            isSearchOpen ? styles.searchOpen : ''
-          }`}
-          onClick={toggleSearch}
+          className={styles.searchButton}
+          onClick={handleSearch}
+          disabled={!searchText.trim()}
         >
-          <img
-            src="/icons/icon-search.svg"
-            alt="Search"
-            className={styles.searchIcon}
-          />
+          Search
         </button>
-        {isSearchOpen && (
-          <input
-            type="text"
-            placeholder="Search tasks..."
-            className={`${styles.searchInput} ${
-              isSearchOpen ? styles.searchInputOpen : ''
-            }`}
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-        )}
+        <button
+          className={styles.clearButton}
+          onClick={handleClearSearch}
+          disabled={!searchText.trim()}
+        >
+          Clear Search
+        </button>
       </div>
     </header>
   );
