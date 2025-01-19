@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './ListHeader.module.scss';
-
 interface ListHeaderProps {
   onSearch: (query: string) => void;
   onClearSearch: () => void;
@@ -8,15 +7,18 @@ interface ListHeaderProps {
 
 const ListHeader: React.FC<ListHeaderProps> = ({ onSearch, onClearSearch }) => {
   const [searchText, setSearchText] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSearch = () => {
     if (searchText.trim()) {
       onSearch(searchText.trim());
+      setIsSearching(true);
     }
   };
 
   const handleClearSearch = () => {
     setSearchText('');
+    setIsSearching(false);
     onClearSearch();
   };
 
@@ -41,7 +43,7 @@ const ListHeader: React.FC<ListHeaderProps> = ({ onSearch, onClearSearch }) => {
         <button
           className={styles.clearButton}
           onClick={handleClearSearch}
-          disabled={!searchText.trim()}
+          disabled={!isSearching}
         >
           Clear Search
         </button>
