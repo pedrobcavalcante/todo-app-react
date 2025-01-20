@@ -9,15 +9,14 @@ $gradient-start: #55ddff;
 $gradient-end: #c058f3;
 $box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 $focus-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
-
 .task {
   width: 100%;
   box-sizing: border-box;
   max-width: 600px;
   height: 46px;
   padding: 10px;
-  background: $primary-bg;
-  border-bottom: 1px solid $border-color;
+  background: var(--card-background, #25273c);
+  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   display: flex;
   align-items: center;
   gap: 15px;
@@ -26,12 +25,12 @@ $focus-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
     color 0.3s ease;
 
   &:hover {
-    background: $hover-bg;
+    background: var(--hover-bg, #1f202d);
   }
 
   &.completed .text {
     text-decoration: line-through;
-    color: $completed-text;
+    color: var(--completed-text, #45475d);
   }
 
   &:first-child {
@@ -39,7 +38,6 @@ $focus-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
     border-top-right-radius: 5px;
   }
 }
-
 .checkButton {
   width: 16px;
   height: 16px;
@@ -67,21 +65,21 @@ $focus-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3);
 }
 
 .text {
-  color: $text-color;
+  color: var(--text-color, #cdcfe7);
   transition: color 0.3s ease;
 
   &:hover {
-    color: $hover-text-color;
+    color: var(--hover-text-color, #eaeaea);
   }
 }
 
 .editInput {
+  background: var(--hover-bg, #1f202d);
+  color: var(--text-color, #cdcfe7);
   width: 100%;
   padding: 8px;
   border: none;
   border-radius: 5px;
-  background: $hover-bg;
-  color: $text-color;
   font-size: 1rem;
   outline: none;
   box-shadow: $focus-shadow;
