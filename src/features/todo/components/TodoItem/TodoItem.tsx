@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './TodoItem.module.scss';
+
 interface TodoItemProps {
   id: number;
   text: string;
@@ -18,23 +19,10 @@ const TodoItem: React.FC<TodoItemProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
 
-  const handleTextClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleBlur = () => {
+  const handleBlurOrEnter = () => {
     setIsEditing(false);
     if (editedText.trim() !== text) {
       onEdit(id, editedText.trim());
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setIsEditing(false);
-      if (editedText.trim() !== text) {
-        onEdit(id, editedText.trim());
-      }
     }
   };
 
@@ -45,22 +33,20 @@ const TodoItem: React.FC<TodoItemProps> = ({
         onClick={() => onToggle(id)}
         aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
       >
-        {completed && (
-          <img src="/icons/icon-check.svg" alt="Checked" />
-        )}
+        {completed && <img src="/icons/icon-check.svg" alt="Checked" />}
       </button>
       {isEditing ? (
         <input
           type="text"
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyPress}
+          onBlur={handleBlurOrEnter}
+          onKeyDown={(e) => e.key === 'Enter' && handleBlurOrEnter()}
           autoFocus
           className={styles.editInput}
         />
       ) : (
-        <span onClick={handleTextClick} className={styles.text}>
+        <span onClick={() => setIsEditing(true)} className={styles.text}>
           {text}
         </span>
       )}
