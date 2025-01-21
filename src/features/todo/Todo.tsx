@@ -19,6 +19,7 @@ const Todo: React.FC = () => {
     filter,
     searchTasks,
     clearSearch,
+    deleteTask,
   } = useTodo();
 
   const [newTaskText, setNewTaskText] = useState('');
@@ -39,7 +40,12 @@ const Todo: React.FC = () => {
           }}
         />
       </div>
-      <TodoList tasks={tasks} onToggle={toggleTask} onEdit={editTask} />
+      <TodoList
+        tasks={tasks}
+        onToggle={toggleTask}
+        onEdit={editTask}
+        onDelete={deleteTask}
+      />
       <ListFooter
         remainingTasks={remainingTasks}
         setFilter={setFilter}

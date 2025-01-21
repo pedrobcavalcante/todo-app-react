@@ -6,9 +6,15 @@ interface TodoListProps {
   tasks: { id: number; text: string; completed: boolean }[];
   onToggle: (id: number) => void;
   onEdit: (id: number, newText: string) => void;
+  onDelete: (id: number) => void;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ tasks, onToggle, onEdit }) => {
+const TodoList: React.FC<TodoListProps> = ({
+  tasks,
+  onToggle,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <ul className={styles.taskList}>
       {tasks.map((task) => (
@@ -19,6 +25,7 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, onToggle, onEdit }) => {
           completed={task.completed}
           onToggle={onToggle}
           onEdit={onEdit}
+          onDelete={onDelete}
         />
       ))}
     </ul>

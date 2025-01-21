@@ -7,6 +7,7 @@ interface TodoItemProps {
   completed: boolean;
   onToggle: (id: number) => void;
   onEdit: (id: number, newText: string) => void;
+  onDelete: (id: number) => void;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({
@@ -15,6 +16,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   completed,
   onToggle,
   onEdit,
+  onDelete,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
@@ -50,6 +52,13 @@ const TodoItem: React.FC<TodoItemProps> = ({
           {text}
         </span>
       )}
+      <button
+        className={styles.deleteButton}
+        onClick={() => onDelete(id)}
+        aria-label="Delete task"
+      >
+        <img src="/icons/icon-cross.svg" alt="Delete" />
+      </button>
     </li>
   );
 };
