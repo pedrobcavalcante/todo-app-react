@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ListHeader.module.scss';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 interface ListHeaderProps {
   onSearch: (query: string) => void;
   onClearSearch: () => void;
@@ -47,6 +48,7 @@ const ListHeader: React.FC<ListHeaderProps> = ({ onSearch, onClearSearch }) => {
         >
           Clear Search
         </button>
+        <ThemeToggle />
       </div>
     </header>
   );

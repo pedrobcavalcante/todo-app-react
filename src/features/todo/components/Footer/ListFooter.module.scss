@@ -1,8 +1,3 @@
-$font-size: 0.875rem;
-$color-inherit: inherit;
-$transition-color: color 0.3s ease;
-$background-none: none;
-
 .footer {
   width: 100%;
   max-width: 600px;
@@ -11,14 +6,16 @@ $background-none: none;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  font-size: $font-size;
-  background: #25273c;
+  font-size: var(--font-size, 0.875rem);
+  background-color: var(--card-background);
   border-radius: 0 0 5px 5px;
-  color: #cdcfe7;
+  color: var(--text-color);
+  transition: background-color var(--transition-speed);
 
   span {
-    font-size: $font-size;
-    color: $color-inherit;
+    font-size: var(--font-size, 0.875rem);
+    color: inherit;
+    transition: color var(--transition-speed);
   }
 
   .filters {
@@ -26,39 +23,44 @@ $background-none: none;
     gap: 15px;
 
     button {
-      border: $background-none;
-      background: $background-none;
-      color: $color-inherit;
+      border: none;
+      background-color: transparent;
+      color: inherit;
       cursor: pointer;
       font-size: inherit;
-      transition: $transition-color;
+      transition: color var(--transition-speed);
 
       &:hover {
-        color: #eaeaea;
+        color: var(--hover-text-color, #eaeaea);
       }
 
       &.activeFilter {
         font-weight: bold;
-        color: white;
-        border-bottom: 2px solid white;
+        color: var(--text-color, #ffffff);
+        border-bottom: 2px solid var(--text-color, #ffffff);
+        transition:
+          color var(--transition-speed),
+          border-color var(--transition-speed);
       }
 
       &:focus {
-        outline: $background-none;
+        outline: none;
       }
     }
   }
 
   .clearCompleted {
-    background: $background-none;
-    border: $background-none;
-    color: #ff6b6b;
+    background-color: transparent;
+    border: none;
+    color: var(--error-color, #ff6b6b);
     cursor: pointer;
     font-size: inherit;
-    transition: $transition-color;
+    transition:
+      color var(--transition-speed),
+      background-color var(--transition-speed);
 
     &:hover {
-      color: #ff4a4a;
+      color: var(--error-hover-color, #ff4a4a);
     }
   }
 }
