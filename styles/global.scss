@@ -11,6 +11,10 @@
   --text-light-color: #333;
   --text-dark-color: #bcbed5;
 
+  /* Line Border Color */
+  --line-border-color-light: #e7e6ea;
+  --line-border-color-dark: #37394e;
+
   /* Input and Card Colors */
   --input-background-light: #ffffff;
   --input-background-dark: #25273c;
@@ -45,6 +49,7 @@ body {
     --input-background: var(--input-background-light);
     --card-background: var(--card-background-light);
     --text-color: var(--text-light-color);
+    --border-color: var(--line-border-color-light);
   }
 
   /* Dark Theme */
@@ -57,5 +62,6 @@ body {
     --input-background: var(--input-background-dark);
     --card-background: var(--card-background-dark);
     --text-color: var(--text-dark-color);
+    --border-color: var(--line-border-color-dark);
   }
 }
