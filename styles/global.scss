@@ -1,47 +1,71 @@
 :root {
+  /* Background Images */
   --bg-light-image: url('/images/bg-desktop-light.jpg');
   --bg-dark-image: url('/images/bg-desktop-dark.jpg');
+
+  /* Background Colors */
   --bg-dark-color: #181824;
-  --bg-light-color: #fefefe;
-  --text-light-color: #333;
-  --text-dark-color: #fafafa;
+  --bg-light-color: #fafafa;
 
+  /* Text Colors */
+  --text-light-color: #4C4D60;
+  --text-dark-color: #bcbed5;
+
+  /* Line Border Color */
+  --line-border-color-light: #e7e6ea;
+  --line-border-color-dark: #37394e;
+
+  /* Input and Card Colors */
+  --input-background-light: #ffffff;
+  --input-background-dark: #25273c;
+  --card-background-light: #ffffff;
+  --card-background-dark: #25273c;
+
+  /* Typography */
   --font-family: 'Josefin Sans', sans-serif;
-  --transition-speed: 0.3s;
-}
 
+  /* Transitions */
+  --transition-speed: 1.3s;
+}
+input,
+button {
+  font-family: var(--font-family);
+}
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
   transition:
     background-color var(--transition-speed) ease,
-    color var(--transition-speed) ease;
-}
+    background-image var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    --input-background var(--transition-speed) ease,
+    --card-background var(--transition-speed) ease,
+    --border-color var(--transition-speed) ease;
 
-p,
-span,
-label,
-input,
-button,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: inherit;
-}
+  /* Light Theme */
+  &.light {
+    background: var(--bg-light-image) no-repeat center top;
+    background-size: 100% 40vh;
+    background-color: var(--bg-light-color);
+    color: var(--text-light-color);
 
-body.light {
-  background: var(--bg-light-image) no-repeat center top;
-  background-size: 100% 40vh;
-  background-color: var(--bg-light-color);
-  color: var(--text-light-color);
-}
+    --input-background: var(--input-background-light);
+    --card-background: var(--card-background-light);
+    --text-color: var(--text-light-color);
+    --border-color: var(--line-border-color-light);
+  }
 
-body.dark {
-  background: var(--bg-dark-image) no-repeat center top;
-  background-color: var(--bg-dark-color);
-  color: var(--text-dark-color);
+  /* Dark Theme */
+  &.dark {
+    background: var(--bg-dark-image) no-repeat center top;
+    background-size: 100% 40vh;
+    background-color: var(--bg-dark-color);
+    color: var(--text-dark-color);
+
+    --input-background: var(--input-background-dark);
+    --card-background: var(--card-background-dark);
+    --text-color: var(--text-dark-color);
+    --border-color: var(--line-border-color-dark);
+  }
 }
