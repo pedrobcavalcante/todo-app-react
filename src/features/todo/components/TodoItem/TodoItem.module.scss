@@ -15,16 +15,15 @@ $gradient-end: #c058f3;
   gap: 15px;
   position: relative;
   transition:
-    transform 0.3s ease,
+    transform var(--transition-speed),
     background-color var(--transition-speed),
     color var(--transition-speed),
     border-color var(--transition-speed),
-    border-radius 0.3s ease;
+    border-radius var(--transition-speed);
 
   &:hover {
     transform: scale(1.05);
     border-radius: 8px;
-    border: 1px solid var(--border-color);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
@@ -53,8 +52,8 @@ $gradient-end: #c058f3;
   cursor: pointer;
   box-shadow: var(--box-shadow);
   transition:
-    background-color var(--transition-speed),
-    border-color var(--transition-speed);
+    background-color var(--transition-speed);
+    // border-color var(--transition-speed);
 
   &.checked {
     background: linear-gradient(135deg, $gradient-start, $gradient-end);
@@ -91,4 +90,29 @@ $gradient-end: #c058f3;
   &:focus {
     box-shadow: none;
   }
+}
+.deleteButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity var(--transition-speed),
+    transform var(--transition-speed) ease;
+  img {
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover {
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+.task:hover .deleteButton {
+  opacity: 1;
 }

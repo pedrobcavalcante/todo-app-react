@@ -51,7 +51,9 @@ export const useTodo = () => {
   const clearSearch = () => {
     setSearchQuery('');
   };
-
+  const deleteTask = (id: number) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  };
   return {
     tasks: filteredTasks,
     addTask,
@@ -63,5 +65,6 @@ export const useTodo = () => {
     filter,
     searchTasks,
     clearSearch,
+    deleteTask
   };
 };
