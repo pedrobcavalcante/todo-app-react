@@ -8,7 +8,7 @@
   --bg-light-color: #fafafa;
 
   /* Text Colors */
-  --text-light-color: #333;
+  --text-light-color: #4C4D60;
   --text-dark-color: #bcbed5;
 
   /* Line Border Color */
@@ -25,7 +25,7 @@
   --font-family: 'Josefin Sans', sans-serif;
 
   /* Transitions */
-  --transition-speed: 0.3s;
+  --transition-speed: 1.3s;
 }
 input,
 button {
@@ -37,7 +37,11 @@ body {
   font-family: var(--font-family);
   transition:
     background-color var(--transition-speed) ease,
-    color var(--transition-speed) ease;
+    background-image var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    --input-background var(--transition-speed) ease,
+    --card-background var(--transition-speed) ease,
+    --border-color var(--transition-speed) ease;
 
   /* Light Theme */
   &.light {
