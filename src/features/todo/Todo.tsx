@@ -6,6 +6,7 @@ import ListFooter from './components/Footer/Footer';
 import styles from './Todo.module.scss';
 import TodoList from './components/TodoList/TodoList';
 import { useTodo } from './hooks/useTodo';
+import { Task } from '../../core/models/task';
 
 const Todo: React.FC = () => {
   const {
@@ -20,17 +21,19 @@ const Todo: React.FC = () => {
     searchTasks,
     clearSearch,
     deleteTask,
-    setTasks,
+    reorderTasks,
   } = useTodo();
-  const handleReorder = (
-    updatedTasks: { id: number; text: string; completed: boolean }[]
-  ) => {
-    setTasks(updatedTasks);
-  };
+
   const [newTaskText, setNewTaskText] = useState('');
+
+  const handleReorder = (updatedTasks: Task[]) => {
+    reorderTasks(updatedTasks);
+  };
+
   const handleSearch = (query: string) => {
     searchTasks(query);
   };
+
   return (
     <main className={styles.todoPage}>
       <ListHeader onSearch={handleSearch} onClearSearch={clearSearch} />

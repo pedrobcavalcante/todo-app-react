@@ -1,10 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task } from '../../../core/models/task';
+import { TaskService } from '../../../application/services/task_service';
+import { AddTaskUseCase } from '../../../core/usecases/add_task';
+import { GetTasksUseCase } from '../../../core/usecases/get_tasks';
+import { TaskRepositoryImpl } from '../../../infrastructure/repositories/task_repository_impl';
+import { LocalStorageDataSource } from '../../../infrastructure/datasources/local_storage_data_source';
+import { UpdateTaskUseCase } from '../../../core/usecases/update_task';
+
+const dataSource = new LocalStorageDataSource();
+const repository = new TaskRepositoryImpl(dataSource);
+const taskService = new TaskService(
+  new AddTaskUseCase(repository),
+  new GetTasksUseCase(repository),
+  new UpdateTaskUseCase(repository)
+);
 
 export const useTodo = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      const loadedTasks = await taskService.getTasks();
+      setTasks(loadedTasks);
+    })();
+  }, []);
 
   const filteredTasks = tasks.filter((task) => {
     if (searchQuery) {
@@ -15,45 +36,73 @@ export const useTodo = () => {
     return true;
   });
 
-  const addTask = (text: string) => {
-    if (text.trim() === '') return;
-    const newTask = {
-      id: tasks.length + 1,
+  const addTask = async (text: string) => {
+    if (!text.trim()) return;
+
+    const newTask: Task = {
+      id: Date.now(),
+      position: tasks.length, // Define a posição com base na ordem atual
       text: text.trim(),
       completed: false,
     };
+    await taskService.addTask(newTask);
     setTasks((prev) => [...prev, newTask]);
   };
 
-  const editTask = (id: number, newText: string) => {
-    setTasks((prev) =>
-      prev.map((task) => (task.id === id ? { ...task, text: newText } : task))
+  const editTask = async (id: number, newText: string) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, text: newText } : task
     );
+    await taskService.updateTasks(updatedTasks);
+    setTasks(updatedTasks);
   };
 
-  const toggleTask = (id: number) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+  const toggleTask = async (id: number) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
+    await taskService.updateTasks(updatedTasks);
+    setTasks(updatedTasks);
   };
 
-  const clearCompleted = () => {
-    setTasks((prev) => prev.filter((task) => !task.completed));
+  const reorderTasks = async (updatedTasks: Task[]) => {
+    // Atualiza a posição de cada tarefa
+    const reorderedTasks = updatedTasks.map((task, index) => ({
+      ...task,
+      position: index,
+    }));
+    setTasks(reorderedTasks);
+    await taskService.updateTasks(reorderedTasks);
   };
 
-  const remainingTasks = tasks.filter((task) => !task.completed).length;
+  const clearCompleted = async () => {
+    const activeTasks = tasks.filter((task) => !task.completed);
+    const reorderedTasks = activeTasks.map((task, index) => ({
+      ...task,
+      position: index,
+    }));
+    setTasks(reorderedTasks);
+    await taskService.updateTasks(reorderedTasks);
+  };
+
+  const deleteTask = async (id: number) => {
+    const remainingTasks = tasks.filter((task) => task.id !== id);
+    const reorderedTasks = remainingTasks.map((task, index) => ({
+      ...task,
+      position: index,
+    }));
+    setTasks(reorderedTasks);
+    await taskService.updateTasks(reorderedTasks);
+  };
 
   const searchTasks = (query: string) => {
     setSearchQuery(query);
   };
+
   const clearSearch = () => {
     setSearchQuery('');
   };
-  const deleteTask = (id: number) => {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
-  };
+
   return {
     tasks: filteredTasks,
     addTask,
@@ -61,11 +110,11 @@ export const useTodo = () => {
     toggleTask,
     clearCompleted,
     setFilter,
-    remainingTasks,
+    remainingTasks: tasks.filter((task) => !task.completed).length,
     filter,
     searchTasks,
     clearSearch,
     deleteTask,
-    setTasks,
+    reorderTasks,
   };
 };

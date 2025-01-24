@@ -7,15 +7,14 @@ import {
 } from 'react-beautiful-dnd';
 import TodoItem from '../TodoItem/TodoItem';
 import styles from './TodoList.module.scss';
+import { Task } from '../../../../core/models/task';
 
 interface TodoListProps {
-  tasks: { id: number; text: string; completed: boolean }[];
+  tasks: Task[];
   onToggle: (id: number) => void;
   onEdit: (id: number, newText: string) => void;
   onDelete: (id: number) => void;
-  onReorder: (
-    updatedTasks: { id: number; text: string; completed: boolean }[]
-  ) => void;
+  onReorder: (updatedTasks: Task[]) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = ({
@@ -37,6 +36,8 @@ const TodoList: React.FC<TodoListProps> = ({
     onReorder(updatedTasks);
   };
 
+  const sortedTasks = [...tasks].sort((a, b) => a.position - b.position);
+
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="todo-list">
@@ -46,7 +47,7 @@ const TodoList: React.FC<TodoListProps> = ({
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {tasks.map((task, index) => (
+            {sortedTasks.map((task, index) => (
               <Draggable
                 key={task.id.toString()}
                 draggableId={task.id.toString()}
@@ -65,7 +66,7 @@ const TodoList: React.FC<TodoListProps> = ({
                       onToggle={onToggle}
                       onEdit={onEdit}
                       onDelete={onDelete}
-                      isFirst={index === 0} 
+                      isFirst={index === 0}
                     />
                   </li>
                 )}
