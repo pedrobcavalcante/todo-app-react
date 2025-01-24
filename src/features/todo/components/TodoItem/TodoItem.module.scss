@@ -1,32 +1,47 @@
 $check-border: #777a92;
-
 $gradient-start: #55ddff;
 $gradient-end: #c058f3;
 .task {
   width: 100%;
-  box-sizing: border-box;
   max-width: 600px;
   height: 46px;
   padding: 10px;
-  background-color: var(--card-background);
-  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   gap: 15px;
+  box-sizing: border-box;
   position: relative;
+  background-color: var(--card-background);
+  border: none;
   transition:
     transform var(--transition-speed),
     background-color var(--transition-speed),
     color var(--transition-speed),
-    border-color var(--transition-speed),
+    box-shadow 0.2s ease,
     border-radius var(--transition-speed);
 
   &:hover {
     transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    position: relative;
     z-index: 1;
+
+    .deleteButton {
+      opacity: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: -1;
+    }
   }
 
   &.completed .text {
@@ -34,12 +49,20 @@ $gradient-end: #c058f3;
     color: var(--completed-text);
   }
 
-  &:first-child {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  &.dragging {
+    opacity: 0.8;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    z-index: 1;
   }
 }
-
+.firstTask {
+  @extend .task;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
 .checkButton {
   width: 16px;
   height: 16px;
@@ -52,8 +75,8 @@ $gradient-end: #c058f3;
   cursor: pointer;
   box-shadow: var(--box-shadow);
   transition:
-    background-color var(--transition-speed);
-    // border-color var(--transition-speed);
+    background-color var(--transition-speed),
+    border-color var(--transition-speed);
 
   &.checked {
     background: linear-gradient(135deg, $gradient-start, $gradient-end);
@@ -91,6 +114,7 @@ $gradient-end: #c058f3;
     box-shadow: none;
   }
 }
+
 .deleteButton {
   position: absolute;
   right: 10px;
@@ -103,6 +127,7 @@ $gradient-end: #c058f3;
   transition:
     opacity var(--transition-speed),
     transform var(--transition-speed) ease;
+
   img {
     width: 14px;
     height: 14px;
@@ -111,8 +136,4 @@ $gradient-end: #c058f3;
   &:hover {
     transform: translateY(-50%) scale(1.2);
   }
-}
-
-.task:hover .deleteButton {
-  opacity: 1;
 }

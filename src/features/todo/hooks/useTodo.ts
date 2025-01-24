@@ -65,6 +65,7 @@ export const useTodo = () => {
     filter,
     searchTasks,
     clearSearch,
-    deleteTask
+    deleteTask,
+    setTasks,
   };
 };

@@ -8,6 +8,7 @@ interface TodoItemProps {
   onToggle: (id: number) => void;
   onEdit: (id: number, newText: string) => void;
   onDelete: (id: number) => void;
+  isFirst: boolean;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({
@@ -17,6 +18,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   onToggle,
   onEdit,
   onDelete,
+  isFirst,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
@@ -29,7 +31,11 @@ const TodoItem: React.FC<TodoItemProps> = ({
   };
 
   return (
-    <li className={`${styles.task} ${completed ? styles.completed : ''}`}>
+    <li
+      className={`${styles.task} ${completed ? styles.completed : ''} ${
+        isFirst ? styles.firstTask : ''
+      }`}
+    >
       <button
         className={`${styles.checkButton} ${completed ? styles.checked : ''}`}
         onClick={() => onToggle(id)}
