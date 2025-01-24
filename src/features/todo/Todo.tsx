@@ -20,8 +20,13 @@ const Todo: React.FC = () => {
     searchTasks,
     clearSearch,
     deleteTask,
+    setTasks,
   } = useTodo();
-
+  const handleReorder = (
+    updatedTasks: { id: number; text: string; completed: boolean }[]
+  ) => {
+    setTasks(updatedTasks);
+  };
   const [newTaskText, setNewTaskText] = useState('');
   const handleSearch = (query: string) => {
     searchTasks(query);
@@ -45,6 +50,7 @@ const Todo: React.FC = () => {
         onToggle={toggleTask}
         onEdit={editTask}
         onDelete={deleteTask}
+        onReorder={handleReorder}
       />
       <ListFooter
         remainingTasks={remainingTasks}
