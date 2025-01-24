@@ -41,6 +41,7 @@ export const useTodo = () => {
 
     const newTask: Task = {
       id: Date.now(),
+      position: tasks.length, // Define a posição com base na ordem atual
       text: text.trim(),
       completed: false,
     };
@@ -52,7 +53,7 @@ export const useTodo = () => {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, text: newText } : task
     );
-    await taskService.addTask(updatedTasks.find((task) => task.id === id)!);
+    await taskService.updateTasks(updatedTasks);
     setTasks(updatedTasks);
   };
 
@@ -60,17 +61,39 @@ export const useTodo = () => {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, completed: !task.completed } : task
     );
-    await taskService.addTask(updatedTasks.find((task) => task.id === id)!);
+    await taskService.updateTasks(updatedTasks);
     setTasks(updatedTasks);
+  };
+
+  const reorderTasks = async (updatedTasks: Task[]) => {
+    // Atualiza a posição de cada tarefa
+    const reorderedTasks = updatedTasks.map((task, index) => ({
+      ...task,
+      position: index,
+    }));
+    setTasks(reorderedTasks);
+    await taskService.updateTasks(reorderedTasks);
   };
 
   const clearCompleted = async () => {
     const activeTasks = tasks.filter((task) => !task.completed);
-    await taskService.updateTasks(activeTasks);
-    setTasks(activeTasks);
+    const reorderedTasks = activeTasks.map((task, index) => ({
+      ...task,
+      position: index,
+    }));
+    setTasks(reorderedTasks);
+    await taskService.updateTasks(reorderedTasks);
   };
 
-  const remainingTasks = tasks.filter((task) => !task.completed).length;
+  const deleteTask = async (id: number) => {
+    const remainingTasks = tasks.filter((task) => task.id !== id);
+    const reorderedTasks = remainingTasks.map((task, index) => ({
+      ...task,
+      position: index,
+    }));
+    setTasks(reorderedTasks);
+    await taskService.updateTasks(reorderedTasks);
+  };
 
   const searchTasks = (query: string) => {
     setSearchQuery(query);
@@ -80,12 +103,6 @@ export const useTodo = () => {
     setSearchQuery('');
   };
 
-  const deleteTask = async (id: number) => {
-    const remainingTasks = tasks.filter((task) => task.id !== id);
-    await taskService.updateTasks(remainingTasks);
-    setTasks(remainingTasks);
-  };
-
   return {
     tasks: filteredTasks,
     addTask,
@@ -93,11 +110,11 @@ export const useTodo = () => {
     toggleTask,
     clearCompleted,
     setFilter,
-    remainingTasks,
+    remainingTasks: tasks.filter((task) => !task.completed).length,
     filter,
     searchTasks,
     clearSearch,
     deleteTask,
-    setTasks,
+    reorderTasks,
   };
 };

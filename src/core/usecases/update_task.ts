@@ -18,6 +18,7 @@ export class UpdateTaskUseCase {
       ...existingTask,
       completed: task.completed,
       text: task.text,
+      position: task.position,
     };
     await this.taskRepository.updateTask(task);
 
