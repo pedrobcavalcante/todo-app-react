@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import styles from './ThemeToggle.module.scss';
+import ENV from '../../../../config/env';
 
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -13,13 +14,13 @@ const ThemeToggle: React.FC = () => {
     >
       {theme === 'dark' ? (
         <img
-          src="/icons/icon-sun.svg"
+          src={`${ENV.BASE_PATH}/icons/icon-sun.svg`}
           alt="Light Theme"
           className={styles.icon}
         />
       ) : (
         <img
-          src="/icons/icon-moon.svg"
+          src={`${ENV.BASE_PATH}/icons/icon-moon.svg`}
           alt="Dark Theme"
           className={styles.icon}
         />
