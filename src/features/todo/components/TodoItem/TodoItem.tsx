@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './TodoItem.module.scss';
+import ENV from '../../../../config/env';
 
 interface TodoItemProps {
   id: number;
@@ -41,7 +42,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
         onClick={() => onToggle(id)}
         aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
       >
-        {completed && <img src="/icons/icon-check.svg" alt="Checked" />}
+        {completed && (
+          <img src={`${ENV.BASE_PATH}/icons/icon-check.svg`} alt="Checked" />
+        )}
       </button>
       {isEditing ? (
         <input
@@ -63,7 +66,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         onClick={() => onDelete(id)}
         aria-label="Delete task"
       >
-        <img src="/icons/icon-cross.svg" alt="Delete" />
+        <img src={`${ENV.BASE_PATH}/icons/icon-cross.svg`} alt="Delete" />
       </button>
     </li>
   );
