@@ -1,5 +1,5 @@
-import { TaskRepository } from '../repositories/task_repository';
-import { Task } from '../models/task';
+import { Task } from '../../../../core/models/task';
+import { TaskRepository } from '../../../../core/repositories/task_repository';
 
 export class GetTasksUseCase {
   constructor(private taskRepository: TaskRepository) {}

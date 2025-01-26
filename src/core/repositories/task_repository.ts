@@ -5,4 +5,5 @@ export interface TaskRepository {
   saveTasks(tasks: Task[]): Promise<void>;
   getTask(id: number): Promise<Task | undefined>;
   updateTask(task: Task): Promise<void>;
+  deleteTask(id: number): Promise<void>;
 }
