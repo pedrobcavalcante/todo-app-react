@@ -61,6 +61,7 @@ const Todo: React.FC = () => {
         clearCompleted={clearCompleted}
         filter={filter}
       />
+      <span className={styles.dndText}>Drag and drop to reorder list</span>
     </main>
   );
 };

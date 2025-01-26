@@ -95,3 +95,10 @@ $color-light-gray: #cdcfe7;
     }
   }
 }
+.dndText {
+  display: block;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: --text-light-color; 
+}
