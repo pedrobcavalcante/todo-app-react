@@ -1,4 +1,4 @@
-import { TaskRepository } from '../repositories/task_repository';
+import { TaskRepository } from '../../../../core/repositories/task_repository';
 
 export class DeleteTaskUseCase {
   private taskRepository: TaskRepository;

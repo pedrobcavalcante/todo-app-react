@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Task } from '../../../core/models/task';
-import { AddTaskUseCase } from '../../../core/usecases/add_task';
-import { GetTasksUseCase } from '../../../core/usecases/get_tasks';
-import { UpdateTaskUseCase } from '../../../core/usecases/update_task';
-import { TaskRepositoryImpl } from '../../../infrastructure/repositories/task_repository_impl';
 import { LocalStorageDataSource } from '../../../infrastructure/datasources/local_storage_data_source';
-import { DeleteTaskUseCase } from '../../../core/usecases/delete_task';
+import { TaskRepositoryImpl } from '../../../infrastructure/repositories/task_repository_impl';
+import { AddTaskUseCase } from '../domain/usecases/add_task';
+import { DeleteTaskUseCase } from '../domain/usecases/delete_task';
+import { GetTasksUseCase } from '../domain/usecases/get_tasks';
+import { UpdateTaskUseCase } from '../domain/usecases/update_task';
 
 const dataSource = new LocalStorageDataSource();
 const repository = new TaskRepositoryImpl(dataSource);
