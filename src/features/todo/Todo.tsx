@@ -20,7 +20,7 @@ const Todo: React.FC = () => {
     filter,
     searchTasks,
     clearSearch,
-    deleteTask,
+    removeTask,
     reorderTasks,
   } = useTodo();
 
@@ -52,7 +52,7 @@ const Todo: React.FC = () => {
         tasks={tasks}
         onToggle={toggleTask}
         onEdit={editTask}
-        onDelete={deleteTask}
+        onDelete={removeTask}
         onReorder={handleReorder}
       />
       <ListFooter

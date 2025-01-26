@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import ENV from '../src/config/env';
 
 import type { AppProps } from 'next/app';
+import { TaskProvider } from '../src/features/todo/context/TaskContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -16,7 +17,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       `url(${ENV.BASE_PATH}/images/bg-desktop-dark.jpg)`
     );
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <TaskProvider>
+      <Component {...pageProps} />{' '}
+    </TaskProvider>
+  );
 }
 
 export default MyApp;

@@ -17,7 +17,7 @@ $gradient-end: #c058f3;
     transform var(--transition-speed),
     background-color var(--transition-speed),
     color var(--transition-speed),
-    box-shadow 0.2s ease,
+    box-shadow var(--transition-speed) ease,
     border-radius var(--transition-speed);
 
   &:hover {

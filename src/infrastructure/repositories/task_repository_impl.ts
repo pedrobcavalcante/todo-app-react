@@ -27,4 +27,7 @@ export class TaskRepositoryImpl implements TaskRepository {
   async saveTasks(tasks: Task[]): Promise<void> {
     return this.dataSource.saveTasks(tasks);
   }
+  async deleteTask(id: number): Promise<void> {
+    return this.dataSource.deleteTask(id);
+  }
 }
